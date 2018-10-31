@@ -2,7 +2,7 @@ require 'docking_station'
 
 describe DockingStation do
   let(:docking_station) { DockingStation.new }
-  let(:bike) {Bike.new}
+  let(:bike) { Bike.new }
 
   it { expect(docking_station).to respond_to(:release_bike) }
   describe '#release_bike' do
@@ -32,7 +32,7 @@ it "raises an error when when release_bike is called on an empty docking station
 end
 
 it "raises an error when when #dock is called on an full docking station" do 
-  subject.dock(Bike.new)
+  20.times {subject.dock(Bike.new)}
   expect {subject.dock(Bike.new)}.to raise_error 'Docking station full'
 end
 
