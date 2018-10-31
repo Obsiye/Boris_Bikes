@@ -10,6 +10,10 @@ class Bike
 
     def working?
       true
-    end    
+    end
+
+    def dock
+
+    end
 
 end
