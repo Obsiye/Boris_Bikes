@@ -5,6 +5,7 @@ describe DockingStation do
   let(:bike) { Bike.new }
 
   it { expect(docking_station).to respond_to(:release_bike) }
+  
   describe '#release_bike' do
     it 'releases a bike' do
       bike = Bike.new
