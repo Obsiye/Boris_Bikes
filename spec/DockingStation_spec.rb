@@ -6,27 +6,17 @@ describe DockingStation do
 
   it { expect(docking_station).to respond_to(:release_bike) }
 
-  describe '#release_bike' do
+  describe "#release_bike" do
     it 'releases a bike' do
-      bike = Bike.new
-      subject.dock(bike)
-      expect(subject.release_bike).to eq bike
+      bike2 = Bike.new
+      docking_station.dock(bike2)
+      expect(docking_station.release_bike).to eq bike2
     end
   end
-
-# it "gets a bike and expect it to work" do
-#   expect(subject.release_bike.working?).to eq true
-# end
 
 it "allows you to #dock a bike" do
 expect(subject).to respond_to(:dock)
 end
-
-# it "can see that a bike is docked" do
-#   bike = docking_station.release_bike
-#   docking_station.dock(bike)
-#   expect(docking_station.docked_bike).to be_instance_of(Bike)
-# end
 
 it "raises an error when when release_bike is called on an empty docking station" do 
   expect {subject.release_bike}.to raise_error 'No bikes available'
@@ -44,6 +34,21 @@ end
 
 it "when user sets capacity to a value" do
   expect(DockingStation.new(5).capacity).to eq 5
+end
+
+it "responds to report_broken method" do
+  expect(docking_station.respond_to?(:report_broken)).to eq true
+end
+
+it "reports bike if broken" do
+  bike.condition = "bad"
+  expect(docking_station.dock(bike)).to eq true
+end
+
+it "don't release broken bikes" do
+  bike.condition = "bad"
+  docking_station.dock(bike)
+  expect{docking_station.release_bike}.to raise_error 'No bikes available'
 end
 
 end
