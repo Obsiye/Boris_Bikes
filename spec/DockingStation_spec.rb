@@ -38,4 +38,12 @@ DockingStation::DEFAULT_CAPACITY.times {subject.dock(Bike.new)}
   expect {subject.dock(Bike.new)}.to raise_error 'Docking station full'
 end
 
+it "when no value is passed into capacity" do
+   expect(docking_station.capacity).to eq DockingStation::DEFAULT_CAPACITY
+end
+
+it "when user sets capacity to a value" do
+  expect(DockingStation.new(5).capacity).to eq 5
+end
+
 end
